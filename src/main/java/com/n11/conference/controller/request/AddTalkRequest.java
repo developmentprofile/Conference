@@ -1,5 +1,7 @@
 package com.n11.conference.controller.request;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 public class AddTalkRequest {
@@ -10,6 +12,8 @@ public class AddTalkRequest {
 	@NotNull
 	private String talkType;
 
+	@Min(value = 1)
+	@Max(value = 180)
 	private Integer talkTime;
 
 	public AddTalkRequest() {}

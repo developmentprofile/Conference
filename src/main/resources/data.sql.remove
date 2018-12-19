@@ -1,5 +1,5 @@
 --insert into TALK (id, talk_name, talk_time, talk_type) values ('1001', 'A', 30, 'OTHER');
---insert into TALK (id, talk_name, talk_time, talk_type) values ('1002', 'B', 60, 'OTHER');
+--insert into TALK (id, talk_name, talk_time, talk_type) values ('1002', 'B', 180, 'OTHER');
 --insert into TALK (id, talk_name, talk_time, talk_type) values ('1003', 'C', 50, 'OTHER');
 --insert into TALK (id, talk_name, talk_time, talk_type) values ('1004', 'D', 60, 'OTHER');
 --insert into TALK (id, talk_name, talk_time, talk_type) values ('1005', 'E', 40, 'OTHER');

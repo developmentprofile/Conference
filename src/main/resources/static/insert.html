@@ -8,16 +8,18 @@
 <link rel="stylesheet" type="text/css" href="jquery-ui.min.css">
 </head>
 <body>
-	<div id="resultDiv"></div>
 	<div class="container">
 		<form id="insertTalk" enctype="application/json">
+	
+			<label for="tnamel">Talk Name</label>  
+			<input type="text" id="tname" class="required"></input>
 
-			<label for="tnamel">Talk Name</label> <input type="text" id="tname" class="required">
-
-			<input type="checkbox" id="lightning" value="lightning">Lightning Talk<br> 
-			<label id="ttimel">Talk Time</label> <input type="text" id="ttime" class="required"> 
-			<label id="min">Min</label> <input
-			id="submit" type="submit" value="Submit">
+			<input type="checkbox" id="lightning" value="lightning" >Lightning Talk</input>
+			
+			<label id="ttimel">Talk Time in Minutes</label> 
+			<input type="text" id="ttime" name="ttime" class="required"> 
+			
+			<input id="submit" type="submit" value="Submit">
 		</form>
 	</div>
 </body>
@@ -26,13 +28,18 @@
 
 	$('form[id="insertTalk"]').validate({
 		  rules: {
-			tname: 'required'
+			tname: 'required',
+			ttime: {
+				range:[1,180],
+				required: true
+			}
 		  },
 		  messages: {
-		 	tname: 'This field is required'
-		  },
-		  submitHandler: function(form) {
-		   // form.submit();
+		 	tname: 'This field is required',
+		 	ttime: {
+                required: 'This field is required',
+                range: 'Enter between 1 to 180'
+            }
 		  }
 	});
 
@@ -71,6 +78,8 @@
 			$("#min").hide();
 			talkType = "lightning";
 			$("#ttime").prop('required',false);
+			$("#ttime").removeClass('error');
+			$("#ttime-error").remove();
 		} else {
 			$("#ttime").show();
 			$("#ttimel").show();

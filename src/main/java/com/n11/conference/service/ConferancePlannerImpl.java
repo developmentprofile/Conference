@@ -50,8 +50,7 @@ public class ConferancePlannerImpl implements ConferancePlanner{
 			track.setId(id++);
 			
 			ArrayList<TalkDTO> selectedTalkList = getPlannedTalksForInterval(talkDtoList, timeOperationsService.getBeforeLaunchTime());
-			track.setSessionList(generateSession(getPlannedTalksForInterval(talkDtoList, timeOperationsService.getBeforeLaunchTime()),
-					applicationProperties.getConfStart()));
+			track.setSessionList(generateSession(selectedTalkList,applicationProperties.getConfStart()));
 			removeSelectedTalks(talkDtoList, selectedTalkList);
 			
 			if (!talkDtoList.isEmpty()) {

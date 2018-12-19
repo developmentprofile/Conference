@@ -30,11 +30,12 @@ public class TimeOperationsServiceImpl implements TimeOperationsService {
 
 	@Override
 	public int getBeforeLaunchTime() {
-		DateTime lunchBegin = new DateTime().withHourOfDay(Parser.getHour(properties.getLunchStart()))
-				.withMinuteOfHour(Parser.getMinute(properties.getLunchStart())).withSecondOfMinute(0);
-
+		
 		DateTime confStart = new DateTime().withHourOfDay(Parser.getHour(properties.getConfStart()))
 				.withMinuteOfHour(Parser.getMinute(properties.getConfStart())).withSecondOfMinute(0);
+		
+		DateTime lunchBegin = new DateTime().withHourOfDay(Parser.getHour(properties.getLunchStart()))
+				.withMinuteOfHour(Parser.getMinute(properties.getLunchStart())).withSecondOfMinute(0);
 
 		Minutes firstPart = Minutes.minutesBetween(confStart, lunchBegin);
 		return firstPart.getMinutes();
@@ -42,11 +43,13 @@ public class TimeOperationsServiceImpl implements TimeOperationsService {
 
 	@Override
 	public int getAfterLaunchTime() {
-		DateTime confEnd = new DateTime().withHourOfDay(Parser.getHour(properties.getConfEnd()))
-				.withMinuteOfHour(Parser.getMinute(properties.getConfEnd())).withSecondOfMinute(0);
 
 		DateTime lunchEnd = new DateTime().withHourOfDay(Parser.getHour(properties.getLunchEnd()))
 				.withMinuteOfHour(Parser.getMinute(properties.getLunchEnd())).withSecondOfMinute(0);
+		
+		DateTime confEnd = new DateTime().withHourOfDay(Parser.getHour(properties.getConfEnd()))
+				.withMinuteOfHour(Parser.getMinute(properties.getConfEnd())).withSecondOfMinute(0);
+
 
 		Minutes secondPart = Minutes.minutesBetween(lunchEnd, confEnd);
 		return secondPart.getMinutes();
