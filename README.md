@@ -16,11 +16,12 @@ An application for Conference Scheduling. Problem is a type of Knapsack problem 
 ## Technical Details
 * Although it does not a DB, i used H2 for saving incoming TALK requests from user.
 * Project has Controller, Service and Repository Layers with unit tests.
-* Gets scheduling data through AJAX from REST Service.
- 
+* Gets scheduling data through AJAX from REST API.
+
 
 ## Usage
-* For TALK Insertion use url.  
+* To run app you need to build with maven install because of MapStruct implementations which generates mapping classes..
+* For TALK Insertion use url.
    localhost:8080/insert
 * For Conference Scheduling .  
    localhost:8080/list
