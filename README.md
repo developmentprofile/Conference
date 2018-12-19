@@ -12,6 +12,7 @@ An application for Conference Scheduling. Problem is a type of Knapsack problem 
 * Normal TALKS require duration in minutes between 1-180.
 * LIGHTNING TALKS are 5 min and does not require duration.
 * TALK NAME are IDENTICAL and TALKS with same name will not be approved.
+* If there is not SESSION afternoon, LUNCH will not be in TRACK schedule
 
 ## Technical Details
 * Although it does not a DB, i used H2 for saving incoming TALK requests from user.
