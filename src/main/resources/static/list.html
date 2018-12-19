@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="jquery-ui.min.css">
+
+<style>
+table {
+	overflow-x: auto;
+	border-collapse: collapse;
+}
+table, th, td {
+  border: 1px solid black;
+}
+
+table td {
+    word-wrap: break-word;         /* All browsers since IE 5.5+ */
+    overflow-wrap: break-word;     /* Renamed property in CSS3 draft spec */
+}
+</style>
+
+</head>
+
+<body>
+	<div id="resultDiv">
+		<table id="schedule" style="width: 100%" cellpadding="3">
+
+		</table>
+	</div>
+
+</body>
+<script>
+	$(document).ready(
+			function() {
+				$.ajax({
+					url : '/schedule',
+					dataType : 'JSON',
+					type : 'post',
+					contentType : 'application/json',
+					success : function(data, textStatus, jQxhr) {
+
+						var body = $('#schedule');
+						$.each(data.trackList, function(index, element) {
+							var row = $('<tr></tr>');
+							row.append('<td> Track : ' + element.id + '</td>');
+							$.each(element.sessionList, function(index2,
+									element2) {
+								row.append('<td> Session : '
+										+ element2.talk.talkName + ' Start : '
+										+ element2.startTime + ' End :'
+										+ element2.endTime + ' Dur :' 
+										+ element2.talk.talkTime +' </td>');
+							});
+							body.append(row);
+						});
+					},
+					error : function(jqXhr, textStatus, errorThrown) {
+
+					}
+				});
+			});
+</script>
+</html>

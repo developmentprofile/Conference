@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>N11 Conferance</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="jquery.js"></script>
+<script src="jquery.validate.min.js"></script>
+<link rel="stylesheet" type="text/css" href="jquery-ui.min.css">
+</head>
+<body>
+	<div id="resultDiv"></div>
+	<div class="container">
+		<form id="insertTalk" enctype="application/json">
+
+			<label for="tnamel">Talk Name</label> <input type="text" id="tname" class="required">
+
+			<input type="checkbox" id="lightning" value="lightning">Lightning Talk<br> 
+			<label id="ttimel">Talk Time</label> <input type="text" id="ttime" class="required"> 
+			<label id="min">Min</label> <input
+			id="submit" type="submit" value="Submit">
+		</form>
+	</div>
+</body>
+<script>
+
+
+	$('form[id="insertTalk"]').validate({
+		  rules: {
+			tname: 'required'
+		  },
+		  messages: {
+		 	tname: 'This field is required'
+		  },
+		  submitHandler: function(form) {
+		   // form.submit();
+		  }
+	});
+
+	$( "#insertTalk" )
+		.submit(
+			function(event) {
+				var isValid =$('#insertTalk').valid();
+				if (isValid) {
+					$.ajax({
+		                url: 'talk',
+		                dataType: 'JSON',
+		                type: 'post',
+		                data: JSON.stringify( { "talkName": $('#tname').val(), "talkTime": $('#ttime').val(), "talkType" : talkType } ),
+		                contentType: 'application/json',
+		                success: function( data, textStatus, jQxhr ){
+		                    //$('#response pre').html( JSON.stringify( data ) );
+		                		console.log(data);
+		                		alert("Talk is added");
+		                		$("#tname").val("");
+		                		$("#ttime").val("");
+		                },
+		                error: function( jqXhr, textStatus, errorThrown ){
+		                		alert("Talk is not added");
+		                }
+		            });
+					event.preventDefault();
+				}
+			});
+
+	var talkType = "other";
+	$("#lightning").on("click", function() {
+		if ($(this).is(":checked")) // "this" refers to the element that fired the event
+		{
+			$("#ttime").hide();
+			$("#ttimel").hide();
+			$("#min").hide();
+			talkType = "lightning";
+			$("#ttime").prop('required',false);
+		} else {
+			$("#ttime").show();
+			$("#ttimel").show();
+			$("#show").hide();
+			$("#ttime").prop('required',true);
+			talkType = "other";
+		}
+	});
+
+</script>
+</html>
