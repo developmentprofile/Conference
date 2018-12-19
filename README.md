@@ -23,6 +23,6 @@ An application for Conference Scheduling. Problem is a type of Knapsack problem 
 * To run app you need to build with maven install because of MapStruct implementations which generates mapping classes..
 * For TALK Insertion use url.
    localhost:8080/insert
-* For Conference Scheduling .  
+* For Conference Scheduling.  
    localhost:8080/list
 * If you don't want to enter a lot of data from UI, remove ".remove" extension from data.sql file under resources, it will load some random data to H2 DB.
